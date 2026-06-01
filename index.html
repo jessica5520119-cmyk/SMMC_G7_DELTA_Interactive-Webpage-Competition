@@ -129,10 +129,24 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 32px;
-            z-index: 1000;
+            z-index: 2000;
             border-bottom: 1px solid var(--border-color);
             transition: var(--transition);
         }
+        @media (max-width:768px){
+
+    nav{
+        width:100%;
+        left:0;
+        right:0;
+        padding:0 12px;
+        box-sizing:border-box;
+    }
+    header#home{
+        padding-top:160px;
+    }
+
+}
         
         /* 導覽列左側與漢堡選單 */
         .nav-left { display: flex; align-items: center; gap: 16px; }
@@ -1821,6 +1835,43 @@
                 opacity:1;
                 transform:translateY(0);
             }
+        }
+        @media (max-width:768px){
+            body{
+              margin-left:0;
+             padding-top:0;
+            }
+          .sidebar{
+              top:70px;
+              left:0;
+
+              width:100%;
+              height:auto;
+
+              padding:8px;
+
+              overflow-x:auto;
+              overflow-y:hidden;
+
+              border-right:none;
+              border-bottom:1px solid var(--border-color);
+          }
+
+          .sidebar-nav{
+              flex-direction:row;
+              width:max-content;
+          }
+
+          .sidebar-nav a{
+              min-height:auto;
+              white-space:nowrap;
+          }
+
+          main.container{
+             margin-left:0;
+             width:100%;
+            padding-top:140px;
+          } 
         }
         
     </style>
@@ -3741,6 +3792,35 @@
 
       render();
     })();
+window.addEventListener('load', () => {
+
+    if(window.innerWidth <= 768){
+
+        const sidebar = document.querySelector('.sidebar');
+
+        if(!sidebar) return;
+
+        setTimeout(() => {
+
+            sidebar.scrollTo({
+                left: 70,
+                behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+
+                sidebar.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+
+            }, 700);
+
+        }, 1000);
+
+    }
+
+});
   </script>
 </section>
 
